@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, Main!</string>
+    <string name="app_name">AOKPCB Alpha</string>
+    <string name="current_version">AOKPCB Version: </string>
+    <string name="device">Device: </string>
+    <string name="nightly">Nightly Builds</string>
+    <string name="nightly_title">Nightlies</string>
+
+</resources>
