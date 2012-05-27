@@ -6,7 +6,10 @@ import android.app.Activity;
 import android.app.Fragment; 
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 public class Main extends Activity {
@@ -41,11 +44,26 @@ public class Main extends Activity {
         actionbar.addTab(WebsiteTab);
         actionbar.addTab(DownloadTab);
         actionbar.addTab(AboutTab);
+        
     }
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("tab", getActionBar().getSelectedNavigationIndex());
+    }
+    
+    public void nightlyButtonClick(View v) {
+		Log.i("AOKPCB", "nightlyButtonClick()");
+		Intent nIntent = new Intent(Main.this, Nightly.class);
+		startActivity(nIntent);
+		finish();
+	}
+    
+    public void officialButtonClick(View v) {
+		Log.i("AOKPCB", "officialButtonClick()");
+		Intent oIntent = new Intent(Main.this, Official.class);
+		startActivity(oIntent);
+		finish();
     }
     
 }
@@ -67,6 +85,7 @@ class MyTabsListener implements ActionBar.TabListener {
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 		ft.replace(R.id.fragment_container, fragment);
+		Log.i("AOKPCB", "Tab:" + " " + tab);
 	}
 
 	@Override

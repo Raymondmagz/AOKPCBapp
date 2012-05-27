@@ -3,8 +3,35 @@
 
     <string name="hello">Hello World, Main!</string>
     <string name="app_name">AOKPCB</string>
+    
+    <!-- Tabs -->
     <string name="website">AOKPCB</string>
     <string name="download">Downloads</string>
     <string name="about">About</string>
+    
+    <!-- AOKPCB -->
+
+    <!-- Downloads -->
+    <string name="device">Device: </string>
+    <string name="rom_version">AOKPCB Version: </string>
+    <string name="dl_nightly">Download Latest Nightly</string>
+    <string name="dl_official">Download Latest Official</string>
+    
+    <string name="nightly">Download Nightly</string>
+    <string name="official">Download Official</string>
+    
+    <string name="changelog">Changelog</string>
+    
+    <!-- Nightly -->
+    <string name="lnightly">Download latest nightly for</string>
+    
+    <!-- Official -->
+    <string name="lofficial">Download latest official for</string>
+    
+    <!-- About -->
+    <string name="scar45">scar45</string>
+    <string name="remicks">remicks</string>
+    <string name="cr5315">cr5315</string>
+    <string name="karma">Instant Karma!</string>
 
 </resources>

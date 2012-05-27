@@ -13,23 +13,19 @@
         android:text="@string/device" />
 
     <Button
-        android:id="@+id/nightlyButton"
+        android:id="@+id/downloadNightlyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/deviceText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:text="@string/dl_nightly" 
-        android:onClick="nightlyButtonClick"/>
+        android:layout_marginTop="20dp"
+        android:text="@string/lnightly" android:layout_marginLeft="10dp" android:layout_marginRight="10dp"/>
 
-    <Button
-        android:id="@+id/officialButton"
-        android:layout_width="wrap_content"
+    <WebView
+        android:id="@+id/nightlyWebView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/nightlyButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:text="@string/dl_official"
-        android:onClick="officialButtonClick" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp" android:layout_below="@id/downloadNightlyButton"/>
 
 </RelativeLayout>

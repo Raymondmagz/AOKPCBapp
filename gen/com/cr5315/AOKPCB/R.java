@@ -11,24 +11,75 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int dev_cr5315=0x7f020000;
+        public static final int dev_remicks=0x7f020001;
+        public static final int dev_scar45=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
     }
     public static final class id {
-        public static final int fragment_container=0x7f050001;
-        public static final int textView1=0x7f050000;
-        public static final int webView=0x7f050002;
+        public static final int crKarma=0x7f06000b;
+        public static final int crLayout=0x7f060008;
+        public static final int deviceText=0x7f06000c;
+        public static final int downloadNightlyButton=0x7f060010;
+        public static final int downloadOfficialButton=0x7f060012;
+        public static final int fragment_container=0x7f06000f;
+        public static final int img5315=0x7f060009;
+        public static final int imgRemicks=0x7f060005;
+        public static final int imgScar=0x7f060001;
+        public static final int nightlyButton=0x7f06000d;
+        public static final int nightlyWebView=0x7f060011;
+        public static final int officialButton=0x7f06000e;
+        public static final int officialWebView=0x7f060013;
+        public static final int remicksKarma=0x7f060007;
+        public static final int remicksLayout=0x7f060004;
+        public static final int scarKarma=0x7f060003;
+        public static final int scarLayout=0x7f060000;
+        public static final int textView1=0x7f060002;
+        public static final int textView2=0x7f060006;
+        public static final int textView3=0x7f06000a;
+        public static final int webView=0x7f060014;
     }
     public static final class layout {
         public static final int about=0x7f030000;
         public static final int downloads=0x7f030001;
         public static final int main=0x7f030002;
-        public static final int website=0x7f030003;
+        public static final int nightly=0x7f030003;
+        public static final int official=0x7f030004;
+        public static final int website=0x7f030005;
+    }
+    public static final class menu {
+        public static final int nightly=0x7f050000;
+        public static final int official=0x7f050001;
     }
     public static final class string {
         public static final int about=0x7f040004;
         public static final int app_name=0x7f040001;
+        public static final int changelog=0x7f04000b;
+        public static final int cr5315=0x7f040010;
+        /**  AOKPCB 
+ Downloads 
+         */
+        public static final int device=0x7f040005;
+        public static final int dl_nightly=0x7f040007;
+        public static final int dl_official=0x7f040008;
         public static final int download=0x7f040003;
         public static final int hello=0x7f040000;
+        public static final int karma=0x7f040011;
+        /**  Nightly 
+         */
+        public static final int lnightly=0x7f04000c;
+        /**  Official 
+         */
+        public static final int lofficial=0x7f04000d;
+        public static final int nightly=0x7f040009;
+        public static final int official=0x7f04000a;
+        public static final int remicks=0x7f04000f;
+        public static final int rom_version=0x7f040006;
+        /**  About 
+         */
+        public static final int scar45=0x7f04000e;
+        /**  Tabs 
+         */
         public static final int website=0x7f040002;
     }
 }
