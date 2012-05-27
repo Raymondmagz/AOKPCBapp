@@ -1,39 +1,79 @@
 package com.cr5315.AOKPCB;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Build;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-public class Main extends Activity {
-	
-	String log = "AOKPCB";
-	
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        
-        TextView version = (TextView) findViewById(R.id.currentVersion);
-        TextView device = (TextView) findViewById(R.id.deviceText);
-        
-        version.setText(getResources().getString(R.string.current_version) + " " + Build.DISPLAY);
-        device.setText(getResources().getString(R.string.device) + " " + Build.DEVICE);
-        
-        Button nightly = (Button) findViewById(R.id.nightlyButton);
-        nightly.setOnClickListener(new View.OnClickListener() {
+public class Main extends FragmentActivity {
+
+	private static final String [] TITLES = {
+		"AOKPCB",
+		"ROM DOWNLOADS",
+		"ABOUT",
+	};
+
+	private SwipeyTabs mTabs;
+	private ViewPager mViewPager;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.activity_swipeytab);
+
+		mViewPager = (ViewPager) findViewById(R.id.viewpager);
+		mTabs = (SwipeyTabs) findViewById(R.id.swipeytabs);
+
+		SwipeyTabsPagerAdapter adapter = new SwipeyTabsPagerAdapter(this,
+				getSupportFragmentManager());
+		mViewPager.setAdapter(adapter);
+		mTabs.setAdapter(adapter);
+		mViewPager.setOnPageChangeListener(mTabs);
+		mViewPager.setCurrentItem(0);
+	}
+
+	private class SwipeyTabsPagerAdapter extends FragmentPagerAdapter implements
+			SwipeyTabsAdapter {
+		
+		private final Context mContext;
+
+		public SwipeyTabsPagerAdapter(Context context, FragmentManager fm) {
+			super(fm);
+
+			this.mContext = context;
+		}
+
+		@Override
+		public Fragment getItem(int position) {
+			return SwipeyTabFragment.newInstance(TITLES[position]);
+		}
+
+		@Override
+		public int getCount() {
+			return TITLES.length;
+		}
+
+		public TextView getTab(final int position, SwipeyTabs root) {
+			TextView view = (TextView) LayoutInflater.from(mContext).inflate(
+					R.layout.swipey_tab_indicator, root, false);
+			view.setText(TITLES[position]);
+			view.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					mViewPager.setCurrentItem(position);
+				}
+			});
 			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent nIntent = new Intent (Main.this, Nightly.class);
-				startActivity(nIntent);
-				finish();
-			}
-		});
-    }
+			return view;
+		}
+
+	}
+
 }
