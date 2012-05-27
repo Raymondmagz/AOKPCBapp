@@ -1,79 +1,81 @@
 package com.cr5315.AOKPCB;
 
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
+import android.app.Activity;
+import android.app.Fragment; 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.TextView;
+import android.widget.Toast;
 
-public class Main extends FragmentActivity {
+public class Main extends Activity {
+	
+	String log = "AOKPCB";
 
-	private static final String [] TITLES = {
-		"AOKPCB",
-		"ROM DOWNLOADS",
-		"ABOUT",
-	};
+	public static Context appContext;
 
-	private SwipeyTabs mTabs;
-	private ViewPager mViewPager;
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        appContext = getApplicationContext();
+
+       //ActionBar
+        ActionBar actionbar = getActionBar();
+        actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        
+        ActionBar.Tab WebsiteTab = actionbar.newTab().setText(R.string.website);
+        ActionBar.Tab DownloadTab = actionbar.newTab().setText(R.string.download);
+        ActionBar.Tab AboutTab = actionbar.newTab().setText(R.string.about);
+        
+        Fragment WebsiteFragment = new WebsiteFragment();
+        Fragment DownloadFragment = new DownloadFragment();
+        Fragment AboutFragment = new AboutFragment();
+
+        WebsiteTab.setTabListener(new MyTabsListener(WebsiteFragment));
+        DownloadTab.setTabListener(new MyTabsListener(DownloadFragment));
+        AboutTab.setTabListener(new MyTabsListener(AboutFragment));
+
+        actionbar.addTab(WebsiteTab);
+        actionbar.addTab(DownloadTab);
+        actionbar.addTab(AboutTab);
+    }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("tab", getActionBar().getSelectedNavigationIndex());
+    }
+    
+}
+
+
+
+class MyTabsListener implements ActionBar.TabListener {
+	public Fragment fragment;
+
+	public MyTabsListener(Fragment fragment) {
+		this.fragment = fragment;
+	}
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
-		setContentView(R.layout.activity_swipeytab);
-
-		mViewPager = (ViewPager) findViewById(R.id.viewpager);
-		mTabs = (SwipeyTabs) findViewById(R.id.swipeytabs);
-
-		SwipeyTabsPagerAdapter adapter = new SwipeyTabsPagerAdapter(this,
-				getSupportFragmentManager());
-		mViewPager.setAdapter(adapter);
-		mTabs.setAdapter(adapter);
-		mViewPager.setOnPageChangeListener(mTabs);
-		mViewPager.setCurrentItem(0);
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+		Toast.makeText(Main.appContext, "Reselected!", Toast.LENGTH_LONG).show();
 	}
 
-	private class SwipeyTabsPagerAdapter extends FragmentPagerAdapter implements
-			SwipeyTabsAdapter {
-		
-		private final Context mContext;
-
-		public SwipeyTabsPagerAdapter(Context context, FragmentManager fm) {
-			super(fm);
-
-			this.mContext = context;
-		}
-
-		@Override
-		public Fragment getItem(int position) {
-			return SwipeyTabFragment.newInstance(TITLES[position]);
-		}
-
-		@Override
-		public int getCount() {
-			return TITLES.length;
-		}
-
-		public TextView getTab(final int position, SwipeyTabs root) {
-			TextView view = (TextView) LayoutInflater.from(mContext).inflate(
-					R.layout.swipey_tab_indicator, root, false);
-			view.setText(TITLES[position]);
-			view.setOnClickListener(new OnClickListener() {
-				public void onClick(View v) {
-					mViewPager.setCurrentItem(position);
-				}
-			});
-			
-			return view;
-		}
-
+	@Override
+	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+		ft.replace(R.id.fragment_container, fragment);
 	}
 
+	@Override
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+		ft.remove(fragment);
+	}
 }
+
+
+
+
+
